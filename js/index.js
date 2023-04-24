@@ -65,21 +65,29 @@ $(function () {
                 }
             }
         ]
+    })   
+    
+    $('.stage__slider').slick({
+        swipe: true,
+        dots: false,
+        infinite: true,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        arrows: false,
+        draggable: false,
+        variableWidth: true,
+        waitForAnimate: false,
+        responsive: [
+            {
+                breakpoint: 2048,
+                settings: "unslick"
+            },
+            {
+                breakpoint: 769,
+                settings: "slick"
+            }
+        ]
     })
-
-    const screenWidth = window.screen.width;
-    if (screenWidth < 769) {
-        $('.stage__slider').slick({
-            swipe: true,
-            dots: false,
-            infinite: true,
-            slidesToShow: 1,
-            slidesToScroll: 1,
-            arrows: false,
-            draggable: false,
-            waitForAnimate: false
-        })
-    }
 
     $('.community__slider').slick({
         swipe: true,
@@ -98,24 +106,33 @@ $(function () {
         centerMode: true
     })
 
-    if (screenWidth < 1100) {
-        $('.team__slider').slick({
-            swipe: true,
-            dots: false,
-            infinite: true,
-            slidesToShow: 1,
-            slidesToScroll: 1,
-            arrows: false,
-            draggable: true,
-            waitForAnimate: false,
-            autoplay: true,
-            autoplaySpeed: 5000,
-            variableWidth: true,
-            variableHeight: true,
-            focusOnSelect: true,
-            centerMode: true
-        })
-    }
+    $('.team__slider').slick({
+        swipe: true,
+        dots: false,
+        infinite: true,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        arrows: false,
+        draggable: true,
+        waitForAnimate: false,
+        autoplay: true,
+        autoplaySpeed: 5000,
+        variableWidth: true,
+        variableHeight: true,
+        focusOnSelect: true,
+        centerMode: true,
+        responsive: [
+            {
+                breakpoint: 2048,
+                settings: "unslick"
+            },
+            {
+                breakpoint: 1100,
+                settings: "slick"
+            }
+        ]
+
+    })
 
     setInterval(() => {
         if ($(window).scrollTop() > 0 && $('.header__nav').hasClass('header__nav--open') === false) {
@@ -132,8 +149,14 @@ $(function () {
             $('.header__nav').removeClass('header__nav--open')
             $('.burger').removeClass('burger--close')
         } 
-        var id = $(this).attr('href'),
-            top = $(id).offset().top
+        const screenWidth = window.screen.width;
+        var id = $(this).attr('href')
+        if (screenWidth < 769) {
+            var top = $(id).offset().top
+        }
+        else {
+            var top = $(id).offset().top + 50
+        }
         $('body,html').animate({ scrollTop: top }, 1000)
     })
 })
@@ -143,3 +166,7 @@ const modal = new GraphModal();
 document.querySelector('.btn').addEventListener('click', () => {
     new GraphModal().open('second');
 });
+
+
+
+
