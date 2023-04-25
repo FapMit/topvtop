@@ -571,6 +571,7 @@ body:has(.is-open) .wrapper{
 .hero__right img {
     width: 100%;
     height: auto;
+    max-width: 392px;
 }
 .hero__dots .slick-dots {
     display: flex;
