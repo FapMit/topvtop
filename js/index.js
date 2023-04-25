@@ -4,6 +4,10 @@ $(function () {
         $('.header__nav').toggleClass('header__nav--open')
         $('.burger').toggleClass('burger--close')
     })
+    
+    var screenWidth = window.screen.width;
+    
+    // ИНИЦИАЛИЗАЦИЯ ВСЕХ СЛАЙДЕРОВ
 
     $('.hero__slider').slick({
         infinite: true,
@@ -40,7 +44,7 @@ $(function () {
                 breakpoint: 769,
                 settings: {
                     swipe: true,
-                    dots: true
+                    dots: false
                 }
             }
         ]
@@ -61,33 +65,11 @@ $(function () {
                 breakpoint: 769,
                 settings: {
                     swipe: true,
-                    dots: true
+                    dots: false
                 }
             }
         ]
-    })   
-    
-    $('.stage__slider').slick({
-        swipe: true,
-        dots: false,
-        infinite: true,
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        arrows: false,
-        draggable: false,
-        variableWidth: true,
-        waitForAnimate: false,
-        responsive: [
-            {
-                breakpoint: 2048,
-                settings: "unslick"
-            },
-            {
-                breakpoint: 769,
-                settings: "slick"
-            }
-        ]
-    })
+    })      
 
     $('.community__slider').slick({
         swipe: true,
@@ -106,6 +88,17 @@ $(function () {
         centerMode: true
     })
 
+    $('.stage__slider').slick({
+        swipe: true,
+        dots: false,
+        infinite: true,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        arrows: false,
+        draggable: false,
+        variableWidth: true,
+        waitForAnimate: false
+    })
     $('.team__slider').slick({
         swipe: true,
         dots: false,
@@ -120,19 +113,78 @@ $(function () {
         variableWidth: true,
         variableHeight: true,
         focusOnSelect: true,
-        centerMode: true,
-        responsive: [
-            {
-                breakpoint: 2048,
-                settings: "unslick"
-            },
-            {
-                breakpoint: 1100,
-                settings: "slick"
-            }
-        ]
-
+        centerMode: true
     })
+
+    if (screenWidth >= 1150) {
+        $('.team__slider').filter('.slick-initialized').slick('unslick');
+        $('.stage__slider').filter('.slick-initialized').slick('unslick');
+    }
+    else if ((screenWidth < 1150) && (screenWidth > 769)) { 
+        $('.stage__slider').filter('.slick-initialized').slick('unslick');
+    }
+    
+    $(window).resize(function() {
+        screenWidth = window.screen.width;
+        $('.team__slider').filter('.slick-initialized').slick('unslick');
+        $('.stage__slider').filter('.slick-initialized').slick('unslick');
+        
+        if (screenWidth >= 1150) {
+            $('.team__slider').filter('.slick-initialized').slick('unslick');
+            $('.stage__slider').filter('.slick-initialized').slick('unslick');
+        }
+        else if ((screenWidth < 1150) && (screenWidth > 769)) { 
+            $('.stage__slider').filter('.slick-initialized').slick('unslick');
+            $('.team__slider').filter('.slick-initialized').slick('unslick');
+            $('.team__slider').slick({
+                swipe: true,
+                dots: false,
+                infinite: true,
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                arrows: false,
+                draggable: true,
+                waitForAnimate: false,
+                autoplay: true,
+                autoplaySpeed: 5000,
+                variableWidth: true,
+                variableHeight: true,
+                focusOnSelect: true,
+                centerMode: true
+            })
+        }
+        else if (screenWidth <= 769) { 
+            $('.stage__slider').slick({
+                swipe: true,
+                dots: false,
+                infinite: true,
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                arrows: false,
+                draggable: false,
+                variableWidth: true,
+                waitForAnimate: false
+            })
+            $('.team__slider').slick({
+                swipe: true,
+                dots: false,
+                infinite: true,
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                arrows: false,
+                draggable: true,
+                waitForAnimate: false,
+                autoplay: true,
+                autoplaySpeed: 5000,
+                variableWidth: true,
+                variableHeight: true,
+                focusOnSelect: true,
+                centerMode: true
+            })
+        }
+    })
+
+    
 
     setInterval(() => {
         if ($(window).scrollTop() > 0 && $('.header__nav').hasClass('header__nav--open') === false) {
@@ -149,7 +201,7 @@ $(function () {
             $('.header__nav').removeClass('header__nav--open')
             $('.burger').removeClass('burger--close')
         } 
-        const screenWidth = window.screen.width;
+        
         var id = $(this).attr('href')
         if (screenWidth < 769) {
             var top = $(id).offset().top
