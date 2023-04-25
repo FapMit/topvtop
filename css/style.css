@@ -618,20 +618,20 @@ body:has(.is-open) .wrapper{
 }
 .hero__dots .slick-dots li:nth-child(1)::before {
     content: "Выкупы от 0 рублей";
-    background: url("../img/hero/hero-dot-slide1.jpg") 50% 25% no-repeat;
+    background: url("../img/hero/hero-dot-slide1.webp") 50% 25% no-repeat;
     max-width: 90px;
 }
 .hero__dots .slick-dots li:nth-child(2)::before {
     content: "Персональный менеджер";
-    background: url("../img/hero/hero-dot-slide2.jpg") 50% 25% no-repeat;
+    background: url("../img/hero/hero-dot-slide2.webp") 50% 25% no-repeat;
 }
 .hero__dots .slick-dots li:nth-child(3)::before {
     content: "Гарантия безопасности";
-    background: url("../img/hero/hero-dot-slide3.jpg") 50% 25% no-repeat;
+    background: url("../img/hero/hero-dot-slide3.webp") 50% 25% no-repeat;
 }
 .hero__dots .slick-dots li:nth-child(4)::before {
     content: "Автоматические самовыкупы";
-    background: url("../img/hero/hero-dot-slide4.jpg") 50% 25% no-repeat;
+    background: url("../img/hero/hero-dot-slide4.webp") 50% 25% no-repeat;
 }
 
 @media (max-width:1000px) {
